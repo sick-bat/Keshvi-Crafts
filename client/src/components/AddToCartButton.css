@@ -1,0 +1,88 @@
+    /* body { background: #ebebeb; font-family: Arial, sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .add-item-wrapper { display: inline-block; } */
+    .button {
+      position: relative;
+      width: 170px;
+      height: 45px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      border: 1px solid #8d9b3f;
+      background-color: #4B5320;
+      overflow: hidden;
+      transition: width 0.3s;
+      border-radius: 6px;
+    }
+    .button__text {
+      transform: translateX(30px);
+      color: #fff;
+      font-weight: 600;
+      font-size: 18px;
+      transition: color 0.3s;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .button__icon {
+      position: absolute;
+      right: 0;
+      top: 0; bottom: 0;
+      width: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #788625;
+      transition: width 0.3s, background 0.3s;
+      height: 100%;
+      z-index: 2;
+    }
+    .svg {
+      width: 28px;
+      stroke: #fff;
+      pointer-events: none;
+    }
+    .button:hover .button__text { color: transparent; }
+    .button:hover .button__icon {
+      width: 100%;
+      background: #8d9b3f;
+      justify-content: center;
+    }
+    .button:active .button__icon { background-color: #788625; }
+    .button:active { border: 1px solid #788625; }
+    /* Counter Styles */
+    .counter-container {
+      display: flex;
+      align-items: center;
+      background: #788625;
+      border: 1px solid #788625;
+      border-radius: 6px;
+      min-width: 170px;
+      height: 45px;
+      gap: 0;
+      overflow: hidden;
+      transition: background 0.3s, border 0.3s;
+    }
+    .counter-btn {
+      width: 46px;
+      height: 100%;
+      background: #4B5320;
+      border: none;
+      color: #fff;
+      font-size: 22px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .counter-btn:active { background: #4B5320; }
+    .counter-value {
+      flex: 1;
+      text-align: center;
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      background: transparent;
+      letter-spacing: 2px;
+      user-select: none;
+    }

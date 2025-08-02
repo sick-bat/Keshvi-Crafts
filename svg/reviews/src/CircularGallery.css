@@ -1,0 +1,32 @@
+.circular-gallery {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: grab;
+  position: absolute; /* ensure fill for overlay */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.circular-gallery:active {
+  cursor: grabbing;
+}
+
+.add-to-cart-btn {
+  background: #fff;
+  color: #333;
+  border: 1px solid #555;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  font: bold 1rem sans-serif;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+  pointer-events: auto;
+}
+.add-to-cart-btn:hover {
+  background: #eee;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.23);
+  transform: scale(1.04);
+}

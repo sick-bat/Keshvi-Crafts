@@ -1,0 +1,31 @@
+/* App.css */
+
+/* Reset margin and padding */
+body, html {
+  margin: 0;
+  padding: 0;
+  /* font-family: 'Pacifico', sans-serif; */
+  background-color: #fdfaf7;
+}
+
+/* Footer */
+.footer {
+  background-color: #f1eade;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+  color: #5a3d2b;
+}
+
+/* Best Seller Highlight (if used) */
+.best-seller-container {
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}

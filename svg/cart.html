@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stylish Cart • Mini-Cart UI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    /* ====== 1. Page background ====== */
+    body {
+      background: #3c3b46;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    /* ====== 2. Cart shell ====== */
+    .cart-container {
+      width: 320px;
+      background: #fff;
+      border-radius: 10px;
+      padding: 22px 26px 28px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.15);
+    }
+
+    /* ====== 3. Individual row ====== */
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .product-img {
+      width: 64px; height: 64px;
+      flex: 0 0 64px;
+      border-radius: 10px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .item-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .item-info h4 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 600;
+      color: #495c48;
+    }
+
+    .item-info p {
+      margin: 0;
+      font-size: 14px;
+      color: #6c6c6c;
+    }
+
+    .qty-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .qty-control button {
+      width: 28px;
+      height: 28px;
+      background: #f1f1f1;
+      border: none;
+      border-radius: 6px;
+      color: #495c48;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1;
+      cursor: pointer;
+      transition: .18s background;
+      box-sizing: border-box;
+    }
+    .qty-control button:active {
+      background: #e0e0e0;
+    }
+    .qty-control input {
+      width: 28px;
+      height: 28px;
+      text-align: center;
+      font-size: 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      color: #495c48;
+      background: #fafafa;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    /* ====== 5. Total & CTA ====== */
+    .total {
+      text-align: right;
+      font-size: 18px;
+      font-weight: 600;
+      color: #e91e63;
+      margin: 6px 0 22px;
+    }
+
+    .order-btn {
+      width: 100%;
+      padding: 14px 0;
+      border: none;
+      border-radius: 28px;
+      background: #e91e63;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: .24s background;
+      box-shadow: 0 2px 8px rgba(233, 30, 99, 0.08);
+    }
+    .order-btn:hover {
+      background: #d81b60;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cart-container">
+    <!-- First Product -->
+    <div class="cart-item">
+      <div class="product-img"
+           style="background-image: url('https://d3h2k7ug3o5pb3.cloudfront.net/image/2020-12-04/88f164a0-3635-11eb-a219-73e9ca8fa2ef.jpg');">
+      </div>
+      <div class="item-info">
+        <h4>Balen Baltica</h4>
+        <p>$1999.00</p>
+        <div class="qty-control">
+          <button onclick="changeQty(0, -1)">−</button>
+          <input id="qty0" type="text" value="1" readonly />
+          <button onclick="changeQty(0, 1)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Second Product -->
+    <div class="cart-item">
+      <div class="product-img"
+           style="background-image: url('https://i.pinimg.com/564x/3f/a4/92/3fa4921778003a6490974fc416e13851.jpg');">
+      </div>
+      <div class="item-info">
+        <h4>Balen Baltica</h4>
+        <p>$3999.00</p>
+        <div class="qty-control">
+          <button onclick="changeQty(1, -1)">−</button>
+          <input id="qty1" type="text" value="1" readonly />
+          <button onclick="changeQty(1, 1)">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="total" id="totalAmount">$5998.00</div>
+    <button class="order-btn">Place this Order</button>
+  </div>
+
+  <script>
+    const prices = [1999, 3999];
+    const quantities = [1, 1];
+
+    function changeQty(index, delta) {
+      quantities[index] = Math.max(0, quantities[index] + delta);
+      document.getElementById(`qty${index}`).value = quantities[index];
+      updateTotal();
+    }
+
+    function updateTotal() {
+      let total = 0;
+      for (let i = 0; i < prices.length; i++) {
+        total += prices[i] * quantities[i];
+      }
+      document.getElementById("totalAmount").innerText = `$${total.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>

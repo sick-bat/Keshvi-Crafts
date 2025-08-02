@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Item Counter Button</title>
+  <style>
+    body { background: #ebebeb; font-family: Arial, sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .add-item-wrapper { display: inline-block; }
+    .button {
+      position: relative;
+      width: 170px;
+      height: 45px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      border: 1px solid #c5a250;
+      background-color: #3aa856;
+      overflow: hidden;
+      transition: width 0.3s;
+      border-radius: 6px;
+    }
+    .button__text {
+      transform: translateX(30px);
+      color: #fff;
+      font-weight: 600;
+      font-size: 18px;
+      transition: color 0.3s;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .button__icon {
+      position: absolute;
+      right: 0;
+      top: 0; bottom: 0;
+      width: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #c5a250;
+      transition: width 0.3s, background 0.3s;
+      height: 100%;
+      z-index: 2;
+    }
+    .svg {
+      width: 28px;
+      stroke: #fff;
+      pointer-events: none;
+    }
+    .button:hover .button__text { color: transparent; }
+    .button:hover .button__icon {
+      width: 100%;
+      background: #c5a250;
+      justify-content: center;
+    }
+    .button:active .button__icon { background-color: #2e8644; }
+    .button:active { border: 1px solid #2e8644; }
+    /* Counter Styles */
+    .counter-container {
+      display: flex;
+      align-items: center;
+      background: #3aa856;
+      border: 1px solid #c5a250;
+      border-radius: 6px;
+      min-width: 170px;
+      height: 45px;
+      gap: 0;
+      overflow: hidden;
+      transition: background 0.3s, border 0.3s;
+    }
+    .counter-btn {
+      width: 46px;
+      height: 100%;
+      background: #c5a250;
+      border: none;
+      color: #fff;
+      font-size: 22px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .counter-btn:active { background: #2e8644; }
+    .counter-value {
+      flex: 1;
+      text-align: center;
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      background: transparent;
+      letter-spacing: 2px;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="add-item-wrapper" id="container">
+    <!-- Starts with button -->
+    <button type="button" class="button" id="addBtn">
+      <span class="button__text">Add Item</span>
+      <span class="button__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg>
+      </span>
+    </button>
+  </div>
+  <script>
+    const container = document.getElementById('container');
+    // Initial button HTML
+    const initial = `
+      <button type="button" class="button" id="addBtn">
+        <span class="button__text">Add Item</span>
+        <span class="button__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg>
+        </span>
+      </button>
+    `;
+    // Counter HTML
+    const counter = (value = 1) => `
+      <div class="counter-container">
+        <button class="counter-btn" id="minusBtn">&#8722;</button>
+        <div class="counter-value" id="count">${value}</div>
+        <button class="counter-btn" id="plusBtn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="#fff" height="22" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg>
+        </button>
+      </div>
+    `;
+    // Restores the Add Item button and attaches first click handler
+    function restoreInitial() {
+      container.innerHTML = initial;
+      container.addEventListener('click', addBtnHandler);
+    }
+    // Handles the first Add Button click
+    function addBtnHandler(e){
+      if (e.target.closest('#addBtn')) {
+        container.innerHTML = counter();
+        attachCounterListeners(); // Add counter interactivity
+        container.removeEventListener('click', addBtnHandler);
+      }
+    }
+    // Handles −/+ in counter view
+    function attachCounterListeners() {
+      const minusBtn = container.querySelector('#minusBtn'),
+            plusBtn = container.querySelector('#plusBtn'),
+            countEl = container.querySelector('#count');
+      let count = 1;
+      minusBtn.onclick = () => {
+        if (count > 1) {
+          count--;
+          countEl.textContent = count;
+        } else {
+          // Go back to initial "Add Item" button mode
+          restoreInitial();
+        }
+      };
+      plusBtn.onclick = () => {
+        count++;
+        countEl.textContent = count;
+      };
+    }
+    // Setup first click for the initial Add Item button
+    container.addEventListener('click', addBtnHandler);
+  </script>
+</body>
+</html>
