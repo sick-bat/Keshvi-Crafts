@@ -1,0 +1,407 @@
+[
+  {
+    "name": "Sunflower Pot",
+    "category": "Home Decor",
+    "description": "Handmade crochet sunflower pot with eco-friendly and soft yarn, yellow sunflower, green leaves with beige crochet pot. Size: Small (5-6 inch), large (7-8 inch). Perfect as a desk, shelf, windowsill decor.",
+    "price_mrp": 470.0,
+    "price_discounted": 470.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/Sunflower pot"
+    ],
+    "is_featured": true,
+    "stock_count": 10,
+    "created_at": "2025-08-05T05:06:08.553000",
+    "updated_at": "2025-08-05T05:06:08.553000"
+  },
+  {
+    "name": "Crochet Flower Bouquet",
+    "category": "Gifting and Home Decor",
+    "description": "Handmade crochet sunflower and two pink tulips with green leaves, made from high quality and soft yarn.",
+    "price_mrp": 820.0,
+    "price_discounted": 820.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/Crochet bag"
+    ],
+    "is_featured": true,
+    "stock_count": 6,
+    "created_at": "2025-08-05T05:06:08.553000",
+    "updated_at": "2025-08-05T05:06:08.553000"
+  },
+  {
+    "name": "Handmade Crochet Granny Square Bag",
+    "category": "Fashion",
+    "description": "Colorful traditional shoulder bag made with perfect cotton yarn (red, green, yellow, white). Perfect for gifting and shelf use.",
+    "price_mrp": 1432.0,
+    "price_discounted": 1432.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/Crochet bag"
+    ],
+    "is_featured": true,
+    "stock_count": 5,
+    "created_at": "2025-08-05T05:06:08.553000",
+    "updated_at": "2025-08-05T05:06:08.553000"
+  },
+  {
+    "name": "Handmade Crochet Strawberry Hat",
+    "category": "Fashion",
+    "description": "Strawberry themed crochet hat with red texture and green leafy top. Size: For all ages.",
+    "price_mrp": 522.0,
+    "price_discounted": 522.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/Crochet flowers"
+    ],
+    "is_featured": false,
+    "stock_count": 6,
+    "created_at": "2025-08-05T05:06:08.553000",
+    "updated_at": "2025-08-05T05:06:08.553000"
+  },
+  {
+    "name": "Handmade Crochet Rose",
+    "category": "Decor and Gifts",
+    "description": "Beautiful crafted crochet rose available in various colours.",
+    "price_mrp": 250.0,
+    "price_discounted": 250.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/Crochet flowers"
+    ],
+    "is_featured": false,
+    "stock_count": 10,
+    "created_at": "2025-08-05T05:07:15.110000",
+    "updated_at": "2025-08-05T05:07:15.110000"
+  },
+  {
+    "name": "Handmade Crochet Sunflower",
+    "category": "Decor and Gifts",
+    "description": "Handmade crochet sunflower with yellow, brown and green soft yarn.",
+    "price_mrp": 300.0,
+    "price_discounted": 300.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/Crochet flowers"
+    ],
+    "is_featured": false,
+    "stock_count": 8,
+    "created_at": "2025-08-05T05:07:15.110000",
+    "updated_at": "2025-08-05T05:07:15.110000"
+  },
+  {
+    "name": "Handmade Crochet Tulip",
+    "category": "Decor and Gifts",
+    "description": "Handmade crochet beautiful pink tulip with green leaves. Available in various colours.",
+    "price_mrp": 250.0,
+    "price_discounted": 250.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/Crochet flowers"
+    ],
+    "is_featured": false,
+    "stock_count": 8,
+    "created_at": "2025-08-05T05:07:15.110000",
+    "updated_at": "2025-08-05T05:07:15.110000"
+  },
+  {
+    "name": "Handmade Crochet Lily",
+    "category": "Decor and Gifts",
+    "description": "Handmade crochet Lily available in various colours.",
+    "price_mrp": 300.0,
+    "price_discounted": 300.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/Crochet flowers"
+    ],
+    "is_featured": false,
+    "stock_count": 6,
+    "created_at": "2025-08-05T05:07:15.110000",
+    "updated_at": "2025-08-05T05:07:15.110000"
+  },
+  {
+    "name": "Handmade Crochet Coin Purse",
+    "category": "Fashion",
+    "description": "Handmade crochet colourful coin purse.",
+    "price_mrp": 180.0,
+    "price_discounted": 180.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/[]"
+    ],
+    "is_featured": false,
+    "stock_count": 5,
+    "created_at": "2025-08-05T05:07:15.110000",
+    "updated_at": "2025-08-05T05:07:15.110000"
+  },
+  {
+    "name": "Crochet Laptop Bag",
+    "category": "Decor and Gift",
+    "description": "Handmade crochet beautiful olive green and beige colour laptop bag.",
+    "price_mrp": 550.0,
+    "price_discounted": 550.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/Laptop Sleeves"
+    ],
+    "is_featured": true,
+    "stock_count": 6,
+    "created_at": "2025-08-05T05:07:15.110000",
+    "updated_at": "2025-08-05T05:07:15.110000"
+  },
+  {
+    "name": "Crochet Muffler",
+    "category": "Gifts and Fashion",
+    "description": "Handmade crochet cute and beautiful muffler available in various colours.",
+    "price_mrp": 1864.0,
+    "price_discounted": 1864.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/Crochet hat and muffler"
+    ],
+    "is_featured": false,
+    "stock_count": 0,
+    "created_at": "2025-08-05T05:07:15.110000",
+    "updated_at": "2025-08-05T05:07:15.110000"
+  },
+  {
+    "name": "Crochet Harry Potter Muffler",
+    "category": "Fashion and Gifts",
+    "description": "Handmade crochet cute harry potter muffler, off white and army green colour soft yarn.",
+    "price_mrp": 1924.0,
+    "price_discounted": 1924.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/Crochet hat and muffler"
+    ],
+    "is_featured": true,
+    "stock_count": 0,
+    "created_at": "2025-08-05T05:07:15.110000",
+    "updated_at": "2025-08-05T05:07:15.110000"
+  },
+  {
+    "name": "Crochet Hand Bag",
+    "category": "Gift and Fashion",
+    "description": "Handmade crochet cute hand bag available in various colours.",
+    "price_mrp": 560.0,
+    "price_discounted": 560.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/[]"
+    ],
+    "is_featured": false,
+    "stock_count": 5,
+    "created_at": "2025-08-05T05:07:15.110000",
+    "updated_at": "2025-08-05T05:07:15.110000"
+  },
+  {
+    "name": "Handmade Crochet Turtle (Small)",
+    "category": "Home Decor and Gifting",
+    "description": "Handmade crochet cute turtle, (army green, off white and black). Size: small (7 cm).",
+    "price_mrp": 150.0,
+    "price_discounted": 150.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/Turtle"
+    ],
+    "is_featured": false,
+    "stock_count": 0,
+    "created_at": "2025-08-05T05:07:15.110000",
+    "updated_at": "2025-08-05T05:07:15.110000"
+  },
+  {
+    "name": "Handmade Crochet Turtle (Large)",
+    "category": "Home Decor and Gifting",
+    "description": "Handmade crochet cute turtle, (army green, off white and black). Size: large (15 cm).",
+    "price_mrp": 220.0,
+    "price_discounted": 220.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/Turtle"
+    ],
+    "is_featured": false,
+    "stock_count": 0,
+    "created_at": "2025-08-05T05:07:15.110000",
+    "updated_at": "2025-08-05T05:07:15.110000"
+  },
+  {
+    "name": "Handmade Crochet Cute Rakhi",
+    "category": "Gifting",
+    "description": "Handmade crochet beautiful rakhi available in various colours.",
+    "price_mrp": 100.0,
+    "price_discounted": 100.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/[]"
+    ],
+    "is_featured": false,
+    "stock_count": 0,
+    "created_at": "2025-08-05T05:07:15.110000",
+    "updated_at": "2025-08-05T05:07:15.110000"
+  },
+  {
+    "name": "Crochet Flower Hair Clip",
+    "category": "Gift and Shelf",
+    "description": "Handmade crochet cute hair clip available in various colour flowers.",
+    "price_mrp": 89.0,
+    "price_discounted": 89.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/[]"
+    ],
+    "is_featured": false,
+    "stock_count": 0,
+    "created_at": "2025-08-05T05:07:15.110000",
+    "updated_at": "2025-08-05T05:07:15.110000"
+  },
+  {
+    "name": "Crochet Flower Keyring",
+    "category": "Gifts",
+    "description": "Handmade crochet flower keyring available in various flowers.",
+    "price_mrp": 89.0,
+    "price_discounted": 89.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/[]"
+    ],
+    "is_featured": false,
+    "stock_count": 0,
+    "created_at": "2025-08-05T05:07:15.110000",
+    "updated_at": "2025-08-05T05:07:15.110000"
+  },
+  {
+    "name": "Crochet Flower Clutcher",
+    "category": "Gifts",
+    "description": "Handmade crochet cute clutcher available in various colour flowers.",
+    "price_mrp": 119.0,
+    "price_discounted": 119.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/[]"
+    ],
+    "is_featured": false,
+    "stock_count": 0,
+    "created_at": "2025-08-05T05:07:15.110000",
+    "updated_at": "2025-08-05T05:07:15.110000"
+  },
+  {
+    "name": "Handmade Crochet Dress for Laddu Gopal (0-4)",
+    "category": "Gifts and Shelf",
+    "description": "Cute crochet dress with cap, yellow and maroon colour. Available in various colours. Size: 0-4.",
+    "price_mrp": 250.0,
+    "price_discounted": 250.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/Kanhaji"
+    ],
+    "is_featured": false,
+    "stock_count": 0,
+    "created_at": "2025-08-05T05:07:15.110000",
+    "updated_at": "2025-08-05T05:07:15.110000"
+  },
+  {
+    "name": "Handmade Crochet Dress for Laddu Gopal (5-8)",
+    "category": "Gifts and Shelf",
+    "description": "Cute crochet dress with cap, yellow and maroon colour. Available in various colours. Size: 5-8.",
+    "price_mrp": 400.0,
+    "price_discounted": 400.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/Kanhaji"
+    ],
+    "is_featured": false,
+    "stock_count": 0,
+    "created_at": "2025-08-05T05:07:15.110000",
+    "updated_at": "2025-08-05T05:07:15.110000"
+  },
+  {
+    "name": "Crochet Lumba Rakhi",
+    "category": "Gifts",
+    "description": "Handmade crochet lumba rakhi available in various colours.",
+    "price_mrp": 109.0,
+    "price_discounted": 109.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/Rakhi"
+    ],
+    "is_featured": false,
+    "stock_count": 0,
+    "created_at": "2025-08-05T05:07:15.110000",
+    "updated_at": "2025-08-05T05:07:15.110000"
+  },
+  {
+    "name": "Handmade Crochet Sling Bag (Small)",
+    "category": "Gifts and Shelf",
+    "description": "Handmade crochet sling bag available in various colours. Size: small (11\u00d715).",
+    "price_mrp": 250.0,
+    "price_discounted": 250.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/Crochet bag"
+    ],
+    "is_featured": false,
+    "stock_count": 0,
+    "created_at": "2025-08-05T05:07:15.110000",
+    "updated_at": "2025-08-05T05:07:15.110000"
+  },
+  {
+    "name": "Handmade Crochet Sling Bag (Large)",
+    "category": "Gifts and Shelf",
+    "description": "Handmade crochet sling bag available in various colours. Size: large (22\u00d730).",
+    "price_mrp": 550.0,
+    "price_discounted": 550.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/Crochet bag"
+    ],
+    "is_featured": false,
+    "stock_count": 0,
+    "created_at": "2025-08-05T05:07:15.110000",
+    "updated_at": "2025-08-05T05:07:15.110000"
+  },
+  {
+    "name": "Crochet Coasters",
+    "category": "Home Decor",
+    "description": "Handmade crochet coasters in beautiful patterns and colours.",
+    "price_mrp": 0.0,
+    "price_discounted": 0.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/Coaster"
+    ],
+    "is_featured": false,
+    "stock_count": 0,
+    "created_at": "2025-08-05T05:07:15.110000",
+    "updated_at": "2025-08-05T05:07:15.110000"
+  },
+  {
+    "name": "Individual Crochet Flowers",
+    "category": "Home Decor",
+    "description": "Individual handmade crochet flowers in different styles and colours.",
+    "price_mrp": 0.0,
+    "price_discounted": 0.0,
+    "discount_type": "NONE",
+    "photos": [
+      "/uploads/['/img/individual_flowers.png']"
+    ],
+    "is_featured": false,
+    "stock_count": 0,
+    "created_at": "2025-08-05T05:07:15.110000",
+    "updated_at": "2025-08-05T05:07:15.110000"
+  },
+  {
+    "name": "Toran",
+    "category": "Home Decor",
+    "description": NaN,
+    "price_mrp": 650.0,
+    "price_discounted": 650.0,
+    "discount_type": NaN,
+    "photos": [
+      "/uploads/Toran"
+    ],
+    "is_featured": true,
+    "stock_count": 0,
+    "created_at": "2025-08-06T17:09:55.311992",
+    "updated_at": "2025-08-06T17:09:55.312000"
+  }
+]

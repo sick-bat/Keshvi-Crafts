@@ -1,0 +1,170 @@
+/* Full-screen modal overlay */
+.product-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+  box-sizing: border-box;
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+/* Modal content container */
+.product-modal-content {
+  position: relative;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  max-width: 90vw;
+  max-height: 90vh;
+  width: 100%;
+  overflow: hidden;
+  animation: modalSlideIn 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Inner content wrapper */
+.product-modal-inner {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  max-height: calc(90vh - 60px);
+}
+
+/* Close button */
+.product-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+}
+
+.product-modal-close:hover {
+  background: rgba(255, 0, 0, 0.1);
+  color: #ff0000;
+  transform: scale(1.1);
+}
+
+.product-modal-close:active {
+  transform: scale(0.95);
+}
+
+/* Animations */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .product-modal-overlay {
+    padding: 10px;
+  }
+  
+  .product-modal-content {
+    max-width: 95vw;
+    max-height: 95vh;
+    border-radius: 15px;
+  }
+  
+  .product-modal-inner {
+    padding: 15px;
+    max-height: calc(95vh - 50px);
+  }
+  
+  .product-modal-close {
+    top: 10px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-modal-overlay {
+    padding: 5px;
+  }
+  
+  .product-modal-content {
+    max-width: 98vw;
+    max-height: 98vh;
+    border-radius: 10px;
+  }
+  
+  .product-modal-inner {
+    padding: 10px;
+    max-height: calc(98vh - 45px);
+  }
+  
+  .product-modal-close {
+    top: 8px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+}
+
+/* Ensure modal appears above everything */
+.product-modal-overlay * {
+  box-sizing: border-box;
+}
+
+/* Custom scrollbar for modal content */
+.product-modal-inner::-webkit-scrollbar {
+  width: 8px;
+}
+
+.product-modal-inner::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.product-modal-inner::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.product-modal-inner::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

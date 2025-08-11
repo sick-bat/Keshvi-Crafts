@@ -10,7 +10,16 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  imageUrl: String,
+  imageUrl: {
+    type: [String], // ✅ allow multiple image URLs
+    required: true,
+    validate: {
+      validator: function(arr) {
+        return arr.length > 0;
+      },
+      message: 'At least one image URL is required.'
+    }
+  },
   category: String,
   stock: {
     type: Number,
@@ -19,4 +28,5 @@ const productSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 module.exports = mongoose.models.Product || mongoose.model("Product", productSchema);
+
 

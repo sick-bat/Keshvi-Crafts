@@ -1,0 +1,224 @@
+/* style.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #e6b14f, #d49c33);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 500px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+h1{
+    padding-left: 22px;
+    margin-left: 100px;
+}
+.coverflow-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.coverflow-stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.coverflow-item {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.coverflow-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    display: block;
+    -webkit-box-reflect: below 2px -webkit-linear-gradient(bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.1) 20%, rgba(0,0,0,0) 30%, rgba(0,0,0,0));
+}
+
+.coverflow-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.coverflow-item:hover .coverflow-text {
+    transform: translateY(0);
+}
+
+/* Active item styles */
+.coverflow-item.active {
+    transform: translateX(0) translateZ(0) rotateY(0deg) scale(1.2);
+    z-index: 10;
+    opacity: 1;
+}
+
+/* Left side items */
+.coverflow-item.left-1 {
+    transform: translateX(-200px) translateZ(-50px) rotateY(35deg) scale(0.9);
+    z-index: 9;
+    opacity: 0.8;
+}
+
+.coverflow-item.left-2 {
+    transform: translateX(-350px) translateZ(-100px) rotateY(45deg) scale(0.7);
+    z-index: 8;
+    opacity: 0.6;
+}
+
+.coverflow-item.left-3 {
+    transform: translateX(-450px) translateZ(-150px) rotateY(55deg) scale(0.5);
+    z-index: 7;
+    opacity: 0.4;
+}
+
+/* Right side items */
+.coverflow-item.right-1 {
+    transform: translateX(200px) translateZ(-50px) rotateY(-35deg) scale(0.9);
+    z-index: 9;
+    opacity: 0.8;
+}
+
+.coverflow-item.right-2 {
+    transform: translateX(350px) translateZ(-100px) rotateY(-45deg) scale(0.7);
+    z-index: 8;
+    opacity: 0.6;
+}
+
+.coverflow-item.right-3 {
+    transform: translateX(450px) translateZ(-150px) rotateY(-55deg) scale(0.5);
+    z-index: 7;
+    opacity: 0.4;
+}
+
+/* Navigation */
+.coverflow-navigation {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    pointer-events: none;
+}
+
+.nav-button {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    pointer-events: all;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.nav-button:active {
+    transform: scale(0.95);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        height: 400px;
+        margin: 20px;
+    }
+    
+    .coverflow-item {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .coverflow-item.left-1,
+    .coverflow-item.right-1 {
+        transform: translateX(-120px) translateZ(-30px) rotateY(35deg) scale(0.8);
+    }
+    
+    .coverflow-item.right-1 {
+        transform: translateX(120px) translateZ(-30px) rotateY(-35deg) scale(0.8);
+    }
+    
+    .coverflow-item.left-2,
+    .coverflow-item.right-2 {
+        transform: translateX(-200px) translateZ(-60px) rotateY(45deg) scale(0.6);
+    }
+    
+    .coverflow-item.right-2 {
+        transform: translateX(200px) translateZ(-60px) rotateY(-45deg) scale(0.6);
+    }
+    
+    .coverflow-item.left-3,
+    .coverflow-item.right-3 {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-button {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    
+    .coverflow-navigation {
+        padding: 0 10px;
+    }
+}

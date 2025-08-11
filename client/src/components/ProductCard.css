@@ -1,36 +1,46 @@
-/* Card Styling */
 .card {
   width: 100%;
   max-width: 360px;
-  min-height: 460px;
+  min-height: 520px;
   background: #fff;
   border: 1px solid #eee;
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.10);
+  box-shadow: 0 6px 22px rgba(0,0,0,0.10);
   border-radius: 18px;
   display: flex;
   flex-direction: column;
   position: relative;
   transition: 0.3s box-shadow;
   overflow: hidden;
-  margin: 0 auto;
+  margin: 32px auto;
 }
 
-/* Image container */
 .image-container {
   width: 100%;
-  height: 220px;
-  overflow: hidden;
+  height: 280px;
   position: relative;
   border-top-left-radius: 18px;
   border-top-right-radius: 18px;
+  overflow: hidden;
+  background: #000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: pan-y;
 }
+
 .card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: inherit;
+  transition: filter 0.2s;
 }
 
-/* Wishlist Heart */
+.card img:active {
+  filter: brightness(0.94);
+}
+
 .heart-container {
   --heart-color: #ff1744;
   position: absolute;
@@ -41,6 +51,7 @@
   z-index: 10;
   cursor: pointer;
 }
+
 .heart-container .svg-container {
   width: 100%;
   height: 100%;
@@ -49,21 +60,25 @@
   align-items: center;
   position: relative;
 }
-.heart-container .svg-outline {
-  fill: none;
-  stroke: var(--heart-color);
-  position: absolute;
+
+.heart-container .svg-outline,
+.heart-container .svg-filled {
   width: 24px;
   height: 24px;
+  position: absolute;
 }
+
+.heart-container .svg-outline {
+  stroke: var(--heart-color);
+  fill: none;
+}
+
 .heart-container .svg-filled {
   fill: var(--heart-color);
-  position: absolute;
-  width: 24px;
-  height: 24px;
   animation: keyframes-svg-filled 1s;
   display: none;
 }
+
 .heart-container .svg-celebrate {
   position: absolute;
   animation: keyframes-svg-celebrate 0.5s forwards;
@@ -75,12 +90,6 @@
   height: 36px;
 }
 
-/* Wishlist Logic via Class */
-.heart-container .svg-filled,
-.heart-container .svg-celebrate {
-  display: none;
-}
-
 .heart-container.wishlisted .svg-filled,
 .heart-container.wishlisted .svg-celebrate {
   display: block;
@@ -90,35 +99,18 @@
   display: none;
 }
 
-/* Animations */
 @keyframes keyframes-svg-filled {
-  0% {
-    transform: scale(0);
-  }
-  25% {
-    transform: scale(1.2);
-  }
-  50% {
-    transform: scale(1);
-    filter: brightness(1.5);
-  }
-}
-@keyframes keyframes-svg-celebrate {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    opacity: 1;
-    filter: brightness(1.5);
-  }
-  100% {
-    transform: scale(1.4);
-    opacity: 0;
-    display: none;
-  }
+  0% { transform: scale(0); }
+  25% { transform: scale(1.2); }
+  50% { transform: scale(1); filter: brightness(1.5); }
 }
 
-/* Content */
+@keyframes keyframes-svg-celebrate {
+  0% { transform: scale(0); }
+  50% { opacity: 1; filter: brightness(1.5); }
+  100% { transform: scale(1.4); opacity: 0; display: none; }
+}
+
 .card-content {
   padding: 16px;
   display: flex;
@@ -126,32 +118,130 @@
   align-items: center;
   text-align: center;
 }
+
 .card h3 {
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
 }
+
 .card .category {
   font-size: 0.9rem;
   color: #777;
   margin-bottom: 6px;
 }
-.card .price {
-  font-size: 1.2rem;
-  color: #2e7d32;
-  font-weight: 600;
-  margin: 0.5rem 0;
+
+.prices {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 1rem;
 }
-/* .add-button {
-  background-color: #4B5320;
+
+.strike-price {
+  color: #aaa;
+  font-size: 1.05rem;
+  text-decoration: line-through;
+  letter-spacing: 0.8px;
+}
+
+.discount-price {
+  color: #2e7d32;
+  font-size: 1.19rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  margin-top: 2px;
+}
+
+/* Fullscreen Album */
+.fullscreen-overlay {
+  position: fixed;
+  z-index: 12000;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(17, 17, 17, 0.98);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fade-in 0.23s;
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.fullscreen-album-img {
+  max-width: 94vw;
+  max-height: 94vh;
+  object-fit: contain;
+  border-radius: 13px;
+  box-shadow: 0 3px 38px rgba(0,0,0,0.27);
+  animation: image-in 0.26s;
+  background: #fff;
+  display: block;
+  margin: 0 auto;
+}
+
+@keyframes image-in {
+  0% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.fullscreen-close, .fullscreen-arrow {
+  position: absolute;
+  z-index: 13000;
+  background: rgba(0,0,0,0.37);
   color: #fff;
   border: none;
-  padding: 10px 18px;
-  border-radius: 6px;
+  border-radius: 50%;
   cursor: pointer;
-  font-weight: 600;
-  margin-top: auto;
-  transition: 0.2s background-color ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  font-size: 2rem;
 }
-.add-button:hover {
-  background-color: #e64a19;
-} */
+
+.fullscreen-close {
+  top: 30px;
+  right: 36px;
+  width: 44px;
+  height: 44px;
+  font-size: 2.2rem;
+}
+
+.fullscreen-arrow {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  font-size: 2.6rem;
+  opacity: 0.91;
+}
+
+.fullscreen-arrow.left { left: 30px; }
+.fullscreen-arrow.right { right: 30px; }
+
+.fullscreen-dots {
+  position: absolute;
+  bottom: 28px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.fullscreen-dot {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.27;
+  margin: 0 4px;
+}
+
+.fullscreen-dot.active {
+  opacity: 1;
+  background: #4B5320;
+}

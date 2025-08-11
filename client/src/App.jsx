@@ -1,10 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+
+
 // import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import BestSellerHighlight from './components/BestSellerHighlight';
-
+import CoverflowCarousel from './components/CoverflowCarousel';
+import TestimonialsCarousel from './components/TestimonialsCarousel';
 import Products from './pages/Products';
 import Cart from './pages/Cart';
 import Wishlist from './pages/Wishlist'; // ✅ optional: wishlist page
@@ -19,14 +22,16 @@ const App = () => {
         <div>
           {/* <Navbar /> ✅ Now always visible */}
           <HeroSection />
-          <BestSellerHighlight />
+          {/* <BestSellerHighlight /> */}
+          <CoverflowCarousel />
+
 
           <Routes>
             <Route path="/" element={<Products />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/wishlist" element={<Wishlist />} /> {/* ✅ optional */}
           </Routes>
-
+          <TestimonialsCarousel />
           <footer className="footer">
             <p>© 2025 Keshvi Crafts. All rights reserved.</p>
           </footer>

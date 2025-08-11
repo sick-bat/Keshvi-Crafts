@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Product Card Fullscreen Album & Price Display</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    .card {
+      width: 100%;
+      max-width: 360px;
+      min-height: 520px;
+      background: #fff;
+      border: 1px solid #eee;
+      box-shadow: 0 6px 22px rgba(0,0,0,0.10);
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: 0.3s box-shadow;
+      overflow: hidden;
+      margin: 32px auto;
+    }
+    .image-container {
+      width: 100%;
+      height: 280px;
+      position: relative;
+      border-top-left-radius: 18px;
+      border-top-right-radius: 18px;
+      overflow: hidden;
+      background: #000;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      touch-action: pan-y;
+    }
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+      transition: filter 0.2s;
+    }
+    .card img:active { filter: brightness(0.94); }
+    .heart-container {
+      --heart-color: #ff1744;
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 36px;
+      height: 36px;
+      z-index: 10;
+      cursor: pointer;
+    }
+    .heart-container .svg-container { width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: relative;}
+    .heart-container .svg-outline { fill: none; stroke: var(--heart-color); position: absolute; width: 24px; height: 24px;}
+    .heart-container .svg-filled { fill: var(--heart-color); position: absolute; width: 24px; height: 24px; animation: keyframes-svg-filled 1s; display: none;}
+    .heart-container .svg-celebrate { position: absolute; animation: keyframes-svg-celebrate 0.5s forwards; display: none; stroke: var(--heart-color); fill: var(--heart-color); stroke-width: 2px; width: 36px; height: 36px;}
+    .heart-container .svg-filled, .heart-container .svg-celebrate { display: none; }
+    .heart-container.wishlisted .svg-filled, .heart-container.wishlisted .svg-celebrate { display: block;}
+    .heart-container.wishlisted .svg-outline { display: none;}
+    @keyframes keyframes-svg-filled { 0% { transform: scale(0);} 25% { transform: scale(1.2);} 50% { transform: scale(1); filter: brightness(1.5);} }
+    @keyframes keyframes-svg-celebrate { 0% {transform: scale(0);} 50% {opacity: 1;filter: brightness(1.5);} 100% {transform: scale(1.4);opacity: 0;display: none;} }
+    .card-content {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .card h3 { font-size: 1.1rem; margin-bottom: 0.5rem;}
+    .card .category { font-size: 0.9rem; color: #777; margin-bottom: 6px;}
+    .prices {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      margin-bottom: 1rem;
+    }
+    .strike-price {
+      color: #aaa;
+      font-size: 1.05rem;
+      text-decoration: line-through;
+      letter-spacing: 0.8px;
+    }
+    .discount-price {
+      color: #2e7d32;
+      font-size: 1.19rem;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      margin-top: 2px;
+    }
+    /* AddToCart and Counter CSS (same as earlier) */
+    .addtocart-btn {
+      background: #4B5320;
+      border: 1px solid #8d9b3f;
+      border-radius: 7px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.13rem;
+      padding: 0 1.6em 0 0.6em;
+      height: 45px;
+      min-width: 170px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 3px 10px rgba(77,87,43,0.05);
+      transition: background 0.22s, border 0.22s;
+      position: relative;
+      overflow: hidden;
+      outline: none;
+      margin-top: 18px;
+    }
+    .addtocart-btn:hover { background: #788625; border-color: #8d9b3f;}
+    .addtocart-btn:active { background: #5a612d; border-color: #788625;}
+    .cart-icon { display: flex; align-items: center; background: #788625; padding: 8px 10px 8px 8px; border-radius: 9px; transition: background 0.2s;}
+    .addtocart-btn:hover .cart-icon { background: #8d9b3f;}
+    .cart-text { flex: 1; transition: color 0.2s; font-size: 1.1rem;}
+    .counter-container { display: flex; align-items: center; background: #788625; border: 1px solid #788625; border-radius: 7px; min-width: 170px; height: 45px; gap: 0; overflow: hidden; transition: background 0.3s, border 0.3s; margin-top: 18px;}
+    .counter-btn { width: 46px; height: 100%; background: #4B5320; border: none; color: #fff; font-size: 1.6rem; font-weight: 700; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s;}
+    .counter-btn:active { background: #788625; }
+    .counter-value { flex: 1; text-align: center; color: #fff; font-size: 1.15rem; font-weight: 600; background: transparent; user-select: none; letter-spacing: 1px;}
+    /* Fullscreen Overlay Styling for Album */
+    .fullscreen-overlay {
+      position: fixed;
+      z-index: 12000;
+      top: 0; left: 0; right: 0; bottom: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(17, 17, 17, 0.98);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fade-in 0.23s;
+    }
+    @keyframes fade-in { 0% {opacity: 0;} 100%{opacity: 1;} }
+    .fullscreen-album-img {
+      max-width: 94vw;
+      max-height: 94vh;
+      object-fit: contain;
+      border-radius: 13px;
+      box-shadow: 0 3px 38px rgba(0,0,0,0.27);
+      animation: image-in .26s;
+      background: #fff;
+      display: block;
+      margin: 0 auto;
+    }
+    @keyframes image-in { 0%{transform:scale(0.95);} 100%{transform:scale(1);} }
+    .fullscreen-close, .fullscreen-arrow {
+      position: absolute;
+      z-index: 13000;
+      background: rgba(0,0,0,0.37);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+      font-size: 2rem;
+    }
+    .fullscreen-close { top: 30px; right: 36px; width: 44px; height: 44px; font-size:2.2rem;}
+    .fullscreen-close:active { background: #151515; }
+    .fullscreen-arrow {
+      top: 50%; transform: translateY(-50%);
+      width: 44px; height: 44px; font-size: 2.6rem;
+      opacity: 0.91;
+    }
+    .fullscreen-arrow.left  { left: 30px;}
+    .fullscreen-arrow.right { right: 30px;}
+    .fullscreen-arrow:active { background: #1a1a1a;}
+    .fullscreen-dots { position: absolute; bottom: 28px; left: 0; right:0; text-align: center; }
+    .fullscreen-dot {
+      display: inline-block; width: 11px; height: 11px;
+      border-radius: 50%;
+      background: #fff; opacity: 0.27;
+      margin: 0 4px; vertical-align: middle;
+    }
+    .fullscreen-dot.active { opacity:1; background: #4B5320;}
+    @media (max-width: 420px) {
+      .card {max-width: 98vw; min-height:390px;}
+      .image-container {height: 190px;}
+      .fullscreen-close {top: 12px; right: 12px; font-size: 1.65rem; width:34px;height:34px;}
+      .fullscreen-arrow {width: 34px; height: 34px; font-size: 2rem;}
+      .fullscreen-dot {width: 7px; height: 7px;}
+    }
+  </style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+  // Product Data
+  const product = {
+    _id: 'sunflower123',
+    title: 'Crochet Sunflower Pot',
+    category: 'Home decor',
+    price: 499,
+    originalPrice: 750, // will be shown as strike
+    imageUrl: '/images/sunflower.jpg',
+    photos: [
+      'https://picsum.photos/seed/sunflower/600/400',
+      'https://picsum.photos/seed/sunflower2/600/400',
+      'https://picsum.photos/seed/sunflower3/600/400'
+    ]
+  };
+
+  // Wishlist & Cart (Simple simulation)
+  let wishlist = {};
+  function isInWishlist(id) { return Boolean(wishlist[id]); }
+  function toggleWishlist(prod) { wishlist[prod._id] = !wishlist[prod._id]; renderCard(); }
+  let cartCount = 0;
+
+  // AddToCartButton logic (JS, not React)
+  function AddToCartButton({count = 0, onAdd, onRemove}) {
+    let qty = count, active = qty > 0;
+    const container = document.createElement('div');
+    update();
+    function update() {
+      container.innerHTML = "";
+      if (!active) {
+        const btn = document.createElement('button');
+        btn.className = "addtocart-btn";
+        btn.innerHTML = `<span class="cart-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" stroke-width="1.5" fill="none" viewBox="0 0 24 24" stroke="#fff">
+              <circle cx="9" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.82 5H21l-1.6 8.91A2.5 2.5 0 0 1 16.94 16H8.29a2.5 2.5 0 0 1-2.44-2.08L4.02 7.05a.5.5 0 0 1 .5-.6H21"/>
+            </svg>
+          </span><span class="cart-text">Add to Cart</span>`;
+        btn.onclick = () => { qty = 1; active = true; if (onAdd) onAdd(qty); update(); };
+        container.appendChild(btn);
+      } else {
+        const wrap = document.createElement('div');
+        wrap.className = "counter-container";
+        const minusBtn = document.createElement('button');
+        minusBtn.className = "counter-btn";
+        minusBtn.setAttribute("aria-label", "Decrease quantity");
+        minusBtn.innerHTML = "&minus;";
+        minusBtn.onclick = () => {
+          if (qty > 1) { qty--; if (onAdd) onAdd(qty); }
+          else { qty = 0; active = false; if (onRemove) onRemove(0);}
+          update();
+        };
+        const qtyDiv = document.createElement('div');
+        qtyDiv.className = "counter-value";
+        qtyDiv.setAttribute("aria-live","polite");
+        qtyDiv.textContent = qty;
+        const plusBtn = document.createElement('button');
+        plusBtn.className = "counter-btn";
+        plusBtn.setAttribute("aria-label", "Increase quantity");
+        plusBtn.innerHTML = `<svg width="22" height="22" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="#fff" fill="none" class="svg">
+          <line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line>
+        </svg>`;
+        plusBtn.onclick = () => { qty++; if (onAdd) onAdd(qty); update(); };
+        wrap.appendChild(minusBtn); wrap.appendChild(qtyDiv); wrap.appendChild(plusBtn);
+        container.appendChild(wrap);
+      }
+    }
+    return container;
+  }
+  function addToCart(prod) { cartCount = prod.quantity; }
+  function removeFromCart(prod) { cartCount = 0; }
+
+  function renderFullscreenAlbum(photoUrls, initialIndex) {
+    let albumIndex = initialIndex;
+    const overlay = document.createElement('div'); overlay.className = 'fullscreen-overlay'; overlay.tabIndex = 1;
+    function renderPhoto() {
+      overlay.innerHTML = '';
+      // Arrows
+      if(photoUrls.length>1) {
+        const leftBtn = document.createElement('button');
+        leftBtn.className = 'fullscreen-arrow left';
+        leftBtn.innerHTML = '&#8249;';
+        leftBtn.onclick = (e) => { e.stopPropagation(); albumIndex = (albumIndex-1+photoUrls.length)%photoUrls.length; renderPhoto(); };
+        overlay.appendChild(leftBtn);
+        const rightBtn = document.createElement('button');
+        rightBtn.className = 'fullscreen-arrow right';
+        rightBtn.innerHTML = '&#8250;';
+        rightBtn.onclick = (e) => { e.stopPropagation(); albumIndex = (albumIndex+1)%photoUrls.length; renderPhoto(); };
+        overlay.appendChild(rightBtn);
+      }
+      // Image
+      const img = document.createElement('img');
+      img.className = 'fullscreen-album-img';
+      img.src = photoUrls[albumIndex];
+      img.alt = "Product photo enlarged";
+      overlay.appendChild(img);
+      // Dots
+      if(photoUrls.length>1){
+        const dots = document.createElement('div');
+        dots.className = 'fullscreen-dots';
+        for (let i=0; i<photoUrls.length; ++i) {
+          const dot = document.createElement('span');
+          dot.className = 'fullscreen-dot'+(i===albumIndex?' active':'');
+          dot.onclick = (e)=>{e.stopPropagation();albumIndex=i;renderPhoto();};
+          dots.appendChild(dot);
+        }
+        overlay.appendChild(dots);
+      }
+      // Close
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'fullscreen-close';
+      closeBtn.innerHTML = "&times;";
+      closeBtn.title = "Close";
+      closeBtn.onclick = closeOverlay;
+      overlay.appendChild(closeBtn);
+    }
+    function closeOverlay() {
+      document.body.removeChild(overlay);
+      document.body.style.overflow = "";
+    }
+    overlay.onclick = function(e) { if(e.target===overlay)closeOverlay(); };
+    window.addEventListener('keydown', function onKey(e){
+      if (e.key === "Escape") { closeOverlay(); window.removeEventListener('keydown',onKey);}
+    });
+    renderPhoto();
+    document.body.appendChild(overlay);
+    document.body.style.overflow = "hidden";
+    overlay.focus();
+  }
+
+  function renderCard() {
+    const app = document.getElementById('app');
+    app.innerHTML = '';
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    // Main image (thumbnail view)
+    const imgCont = document.createElement('div');
+    imgCont.className = 'image-container';
+    const img = document.createElement('img');
+    img.alt = product.title;
+    img.src = product.imageUrl.startsWith('http') ? product.imageUrl : (product.photos[0]);
+    imgCont.appendChild(img);
+
+    // Wishlist heart
+    const heartCont = document.createElement('div');
+    heartCont.className = 'heart-container' + (isInWishlist(product._id) ? ' wishlisted' : '');
+    heartCont.title = "Like";
+    heartCont.onclick = e => { e.stopPropagation(); toggleWishlist(product);};
+    heartCont.innerHTML = `
+      <div class="svg-container">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="var(--heart-color)" class="svg-outline" style="width:28px;height:28px">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--heart-color)" class="svg-filled" style="width:28px;height:28px">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12.001 21.243c-.414 0-.83-.133-1.177-.4C5.001 16.478 2 12.718 2 8.75 2 6.127 4.083 4.001 6.75 4.001c1.704 0 3.252.988 4.001 2.453.749-1.465 2.297-2.453 4.001-2.453 2.667 0 4.75 2.127 4.75 4.75 0 3.968-3.001 7.728-8.824 12.093-.347.267-.763.4-1.177.4Z"/>
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" height="100" width="100" class="svg-celebrate" viewBox="0 0 100 100">
+          <polygon points="10,10 20,20"></polygon>
+          <polygon points="10,50 20,50"></polygon>
+          <polygon points="20,80 30,70"></polygon>
+          <polygon points="90,10 80,20"></polygon>
+          <polygon points="90,50 80,50"></polygon>
+          <polygon points="80,80 70,70"></polygon>
+        </svg>
+      </div>
+    `;
+    imgCont.appendChild(heartCont);
+
+    // Open album slider on click, start from clicked photo (usually first)
+    imgCont.onclick = () => renderFullscreenAlbum(product.photos, 0);
+
+    card.appendChild(imgCont);
+
+    const content = document.createElement('div');
+    content.className = 'card-content';
+
+    // PRICES
+    const prices = document.createElement('div');
+    prices.className = 'prices';
+    prices.innerHTML = `
+      <span class="strike-price">₹${product.originalPrice}</span>
+      <span class="discount-price">₹${product.price}</span>
+    `;
+    content.appendChild(prices);
+
+    // Title/category
+    content.innerHTML += `
+      <h3>${product.title}</h3>
+      <p class="category">${product.category}</p>
+    `;
+
+    // AddToCart Dynamic Button
+    const addToCartDiv = AddToCartButton({
+      count: cartCount,
+      onAdd: (qty) => addToCart({ ...product, quantity: qty }),
+      onRemove: () => removeFromCart({ ...product }),
+    });
+    content.appendChild(addToCartDiv);
+
+    card.appendChild(content);
+    app.appendChild(card);
+  }
+
+  renderCard();
+</script>
+</body>
+</html>

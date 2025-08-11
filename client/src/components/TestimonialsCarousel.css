@@ -1,0 +1,129 @@
+.testimonial-section {
+  padding: 80px 20px 60px;
+  background-color: #fffdf8;
+  margin-top: 80px; /* separates it from Coverflow */
+  z-index: 0;
+  position: relative;
+}
+
+.testimonial-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.testimonial-carousel {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.testimonial-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.testimonial-track {
+  display: flex;
+  transition: transform 0.4s ease;
+  will-change: transform;
+}
+
+.testimonial-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  width: 300px;
+  margin-right: 20px;
+  flex-shrink: 0;
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.testimonial-image {
+  width: 60px;
+  height: 60px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+}
+
+.testimonial-stars {
+  display: flex;
+  color: #22c55e;
+  gap: 2px;
+}
+
+.testimonial-stars svg {
+  width: 18px;
+  height: 18px;
+}
+
+.testimonial-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 4px;
+  color: #374151;
+}
+
+.testimonial-message {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+.testimonial-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #3aa856;
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  z-index: 10;
+}
+
+.testimonial-nav.left {
+  left: -45px;
+}
+
+.testimonial-nav.right {
+  right: -45px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .testimonial-card {
+    width: 250px;
+  }
+  .testimonial-nav.left {
+    left: -35px;
+  }
+  .testimonial-nav.right {
+    right: -35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonial-card {
+    width: 220px;
+  }
+  .testimonial-nav {
+    width: 28px;
+    height: 28px;
+    font-size: 1.2rem;
+  }
+}
